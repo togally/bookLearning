@@ -33,12 +33,12 @@ public interface List<T> {
     T get(int index);
 
     /**
-     * 查找线性表中是否有元素element
+     * 查找线性表中元素element
      *
      * @param element 目标元素
-     * @return 0 失败 index 目标元素下标
+     * @return -1 失败 index 目标元素下标
      */
-    int locate(T element);
+    int locateElem(T element);
 
     /**
      * 位置index插入元素e
@@ -48,6 +48,13 @@ public interface List<T> {
      * @return 插入后的下标
      */
     int insert(int index, T e);
+
+    /**
+     * 位置index插入元素e
+     *
+     * @param e 元素
+     */
+    void insert(T e);
 
     /**
      * 删除index位置的数据
@@ -63,4 +70,14 @@ public interface List<T> {
      * @return 线性表的元素个数
      */
     int length();
+
+    /**
+     * 是否包含元素elem
+     *
+     * @param elem 目标元素
+     * @return true false
+     */
+    default boolean contains(T elem) {
+        return locateElem(elem)  != -1;
+    }
 }
