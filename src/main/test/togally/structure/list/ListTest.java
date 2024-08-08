@@ -3,6 +3,7 @@ package togally.structure.list;
 import com.alibaba.fastjson.JSON;
 import com.togally.structure.list.List;
 import com.togally.structure.list.array.ArrayList;
+import com.togally.structure.list.linked.UndirectLinkedList;
 import org.junit.Test;
 
 public class ListTest {
@@ -32,6 +33,25 @@ public class ListTest {
         listA.insert(3);
 
         List<Integer> listB = new ArrayList<>();
+        listB.insert(3);
+        listB.insert(4);
+        listB.insert(5);
+
+        testUnion(listA,listB);
+        System.out.println("testUnion" + JSON.toJSONString(listA));
+
+        listA.clear();
+        System.out.println("testUnion" + JSON.toJSONString(listA));
+    }
+
+    @Test
+    public void undirectLinkedListTest(){
+        List<Integer> listA = new UndirectLinkedList<>();
+        listA.insert(1);
+        listA.insert(2);
+        listA.insert(3);
+
+        List<Integer> listB = new UndirectLinkedList<>();
         listB.insert(3);
         listB.insert(4);
         listB.insert(5);
