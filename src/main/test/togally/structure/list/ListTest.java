@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.togally.structure.list.List;
 import com.togally.structure.list.array.ArrayList;
 import com.togally.structure.list.linked.CircleLinkedList;
-import com.togally.structure.list.linked.OneWaytLinkedList;
+import com.togally.structure.list.linked.DulSinglyLinkedList;
+import com.togally.structure.list.linked.node.Node;
+import com.togally.structure.list.linked.SinglyLinkedList;
 import org.junit.Test;
 
 public class ListTest {
@@ -52,13 +54,13 @@ public class ListTest {
      * 单向链表
      */
     @Test
-    public void undirectLinkedListTest(){
-        List<Integer> listA = new OneWaytLinkedList<>();
+    public void singlyLinkedListTest(){
+        List<Integer> listA = new SinglyLinkedList<>();
         listA.insert(1);
         listA.insert(2);
         listA.insert(3);
 
-        List<Integer> listB = new OneWaytLinkedList<>();
+        List<Integer> listB = new SinglyLinkedList<>();
         listB.insert(3);
         listB.insert(4);
         listB.insert(5);
@@ -75,17 +77,39 @@ public class ListTest {
      */
     @Test
     public void circleLinkedListTest(){
-        CircleLinkedList<Integer> listA = new CircleLinkedList<>();
+        CircleLinkedList<Integer, Node<Integer>> listA = new CircleLinkedList<>();
         listA.insert(1);
         listA.insert(2);
         listA.insert(3);
 
-        CircleLinkedList<Integer> listB = new CircleLinkedList<>();
+        CircleLinkedList<Integer,Node<Integer>> listB = new CircleLinkedList<>();
         listB.insert(3);
         listB.insert(4);
         listB.insert(5);
 
         listA.union(listB);
+        System.out.println("testUnion" + JSON.toJSONString(listA));
+
+        listA.clear();
+        System.out.println("testUnion" + JSON.toJSONString(listA));
+    }
+
+    /**
+     * 循环链表
+     */
+    @Test
+    public void dualSinglyLinkedList(){
+        DulSinglyLinkedList<Integer> listA = new DulSinglyLinkedList<>();
+        listA.insert(1);
+        listA.insert(2);
+        listA.insert(3);
+
+        DulSinglyLinkedList<Integer> listB = new DulSinglyLinkedList<>();
+        listB.insert(3);
+        listB.insert(4);
+        listB.insert(5);
+
+        testUnion(listA,listB);
         System.out.println("testUnion" + JSON.toJSONString(listA));
 
         listA.clear();
