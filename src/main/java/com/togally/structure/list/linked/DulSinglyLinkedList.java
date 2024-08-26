@@ -69,12 +69,14 @@ public class DulSinglyLinkedList<T> extends SinglyLinkedList<T, DulNode<T>> {
     }
 
     @Override
-    protected void clearNode(DulNode<T> node) {
+    protected T clearNode(DulNode<T> node) {
         super.clearNode(node);
-        if (null == node)return;
+        if (null == node)return null;
 
+        T data = node.data;
         node.data = null;
         node.prv = null;
         node.next = null;
+        return data;
     }
 }

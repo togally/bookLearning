@@ -11,7 +11,7 @@ import com.togally.structure.list.linked.node.Node;
  *
  * @param <T>
  */
-public class CircleLinkedList<T, N extends Node<T>> extends AbstractLinkedList<T, N> implements ICircleLinkedList<T> {
+public class CircleLinkedList<T, N extends Node<T>> extends AbstractLinkedList<T, N> implements ICircleLinkedList<T,N> {
     /**
      * 循环链表当遍历到首位时节点结束
      *
@@ -57,10 +57,10 @@ public class CircleLinkedList<T, N extends Node<T>> extends AbstractLinkedList<T
      * 循环连标做union操作时只需要将头尾节点相连即可
      *
      * @param other 另外一个链表
-     * @return
+     * @return list
      */
     @Override
-    public CircleLinkedList<T, N> union(CircleLinkedList other) {
+    public CircleLinkedList<T, N> union(CircleLinkedList<T,N> other) {
         this.modCount++;
         this.last.next = other.first;
         other.last.next = this.first;

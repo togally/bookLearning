@@ -73,6 +73,8 @@ public abstract class AbstractLinkedList<T,N extends Node<T>> implements List<T>
         }
         clearNode(this.first);
         clearNode(this.last);
+        this.first = null;
+        this.last = null;
         this.size = 0;
     }
 
@@ -81,11 +83,13 @@ public abstract class AbstractLinkedList<T,N extends Node<T>> implements List<T>
      *
      * @param node
      */
-    protected void clearNode(N node) {
-        if (null == node) return;
+    protected T clearNode(N node) {
+        if (null == node) return null;
+        T data = node.data;
         node.data = null;
         node.next = null;
         node = null;
+        return data;
     }
 
     /**
@@ -124,7 +128,7 @@ public abstract class AbstractLinkedList<T,N extends Node<T>> implements List<T>
      * @param index
      * @return
      */
-    private N getNode(int index) {
+    protected N getNode(int index) {
         N node = first;
         if (null == first) return null;
 
