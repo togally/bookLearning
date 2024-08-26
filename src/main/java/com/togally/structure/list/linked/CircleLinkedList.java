@@ -1,6 +1,8 @@
 package com.togally.structure.list.linked;
 
 
+import java.io.Serializable;
+
 /**
  * 循环链表
  * <p>
@@ -9,7 +11,6 @@ package com.togally.structure.list.linked;
  * @param <T>
  */
 public class CircleLinkedList<T> extends AbstractLinkedList<T> implements ICircleLinkedList<T> {
-
     /**
      * 循环链表当遍历到首位时节点结束
      *

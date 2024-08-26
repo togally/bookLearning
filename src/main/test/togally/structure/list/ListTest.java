@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.togally.structure.list.List;
 import com.togally.structure.list.array.ArrayList;
 import com.togally.structure.list.linked.CircleLinkedList;
-import com.togally.structure.list.linked.UndirectLinkedList;
+import com.togally.structure.list.linked.OneWaytLinkedList;
 import org.junit.Test;
 
 public class ListTest {
@@ -26,6 +26,9 @@ public class ListTest {
         }
     }
 
+    /**
+     * 数组线性表
+     */
     @Test
     public void arrayListTest(){
         List<Integer> listA = new ArrayList<>();
@@ -45,14 +48,17 @@ public class ListTest {
         System.out.println("testUnion" + JSON.toJSONString(listA));
     }
 
+    /**
+     * 单向链表
+     */
     @Test
     public void undirectLinkedListTest(){
-        List<Integer> listA = new UndirectLinkedList<>();
+        List<Integer> listA = new OneWaytLinkedList<>();
         listA.insert(1);
         listA.insert(2);
         listA.insert(3);
 
-        List<Integer> listB = new UndirectLinkedList<>();
+        List<Integer> listB = new OneWaytLinkedList<>();
         listB.insert(3);
         listB.insert(4);
         listB.insert(5);
@@ -64,6 +70,9 @@ public class ListTest {
         System.out.println("testUnion" + JSON.toJSONString(listA));
     }
 
+    /**
+     * 循环链表
+     */
     @Test
     public void circleLinkedListTest(){
         CircleLinkedList<Integer> listA = new CircleLinkedList<>();

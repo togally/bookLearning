@@ -163,10 +163,10 @@ public abstract class AbstractLinkedList<T> implements List<T> {
      */
     protected int insertLast(T data) {
         if (null == this.last) return insertFirst(data);
-        // 1.记录末尾节点 2.last指向新创建的node 3.老node指向信node
+        // 1.记录末尾节点 2.last指向新创建的node 3.老node指向新node
         Node<T> oldNode = this.last;
         this.last = new Node<>(data, null);
-        oldNode.next = this.first;
+        oldNode.next = this.last;
 
         this.size++;
         return 0;
