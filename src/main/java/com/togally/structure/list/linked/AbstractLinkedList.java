@@ -2,20 +2,20 @@ package com.togally.structure.list.linked;
 
 import com.togally.exception.OutOfRangeException;
 import com.togally.structure.list.List;
+import com.togally.structure.list.linked.node.Node;
 
 import java.util.Objects;
-
-public abstract class AbstractLinkedList<T> implements List<T> {
+public abstract class AbstractLinkedList<T,N extends Node<T>> implements List<T> {
 
     /**
      * 头节点
      */
-    protected Node<T> first;
+    protected N first;
 
     /**
      * 尾节点
      */
-    protected Node<T> last;
+    protected N last;
 
     /**
      * 链表长度
@@ -30,7 +30,7 @@ public abstract class AbstractLinkedList<T> implements List<T> {
     /**
      * 初始化链表
      *
-     * @return
+     * @return list
      */
     @Override
     public List<T> initList() {
@@ -64,10 +64,10 @@ public abstract class AbstractLinkedList<T> implements List<T> {
      */
     @Override
     public void clear() {
-        Node<T> prv = first;
-        Node<T> next;
+        N prv = first;
+        N next;
         while (null != prv) {
-            next = prv.next;
+            next = (N) prv.getNext();
             unlink(prv, next);
             prv = next;
         }
@@ -81,7 +81,7 @@ public abstract class AbstractLinkedList<T> implements List<T> {
      *
      * @param node
      */
-    protected void clearNode(Node<T> node) {
+    protected void clearNode(N node) {
         if (null == node) return;
         node.data = null;
         node.next = null;
@@ -95,12 +95,12 @@ public abstract class AbstractLinkedList<T> implements List<T> {
      * @param node
      * @return
      */
-    protected T unlink(Node<T> prv, Node<T> node) {
+    protected T unlink(N prv, N node) {
         if (null == node) {
             prv.next = null;
             return null;
         }
-        final Node<T> next = node.next;
+        final N next = (N) node.getNext();
         if (null == prv) {
             this.first = next;
         } else {
@@ -114,7 +114,7 @@ public abstract class AbstractLinkedList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        Node<T> node = getNode(index);
+        N node = getNode(index);
         return null == node ? null : node.data;
     }
 
@@ -124,12 +124,12 @@ public abstract class AbstractLinkedList<T> implements List<T> {
      * @param index
      * @return
      */
-    private Node<T> getNode(int index) {
-        Node<T> node = first;
+    private N getNode(int index) {
+        N node = first;
         if (null == first) return null;
 
         for (int j = 0; j < index; j++) {
-            node = node.next;
+            node = (N) node.getNext();
             if (null == node) return null;
         }
         return node;
@@ -139,12 +139,12 @@ public abstract class AbstractLinkedList<T> implements List<T> {
     public int locateElem(T element) {
         if (null == first) return -1;
 
-        Node<T> node = first;
+        N node = first;
         for (int i = 0; !nodeFinished(node); i++) {
             if (Objects.equals(node.data, element)) {
                 return i;
             }
-            node = node.next;
+            node = (N) node.getNext();
         }
         return -1;
     }
@@ -164,8 +164,8 @@ public abstract class AbstractLinkedList<T> implements List<T> {
     protected int insertLast(T data) {
         if (null == this.last) return insertFirst(data);
         // 1.记录末尾节点 2.last指向新创建的node 3.老node指向新node
-        Node<T> oldNode = this.last;
-        this.last = new Node<>(data, null);
+        N oldNode = this.last;
+        this.last = (N) Node.newInstance(data,null);
         oldNode.next = this.last;
 
         this.size++;
@@ -178,8 +178,8 @@ public abstract class AbstractLinkedList<T> implements List<T> {
      * @param data 节点数据
      */
     protected int insertFirst(T data) {
-        Node<T> oldNode = this.first;
-        this.first = new Node<>(data, oldNode);
+        N oldNode = this.first;
+        this.first = (N) Node.newInstance(data,oldNode);
         this.size++;
         if (1 == size) this.last = this.first;
         return 0;
@@ -201,9 +201,9 @@ public abstract class AbstractLinkedList<T> implements List<T> {
 
         if (index == size - 1) return insertLast(e);
 
-        Node<T> oldNodePrv = getNode(index - 1);
+        N oldNodePrv = getNode(index - 1);
         assert oldNodePrv != null;
-        Node<T> oldNode = oldNodePrv.next;
+        N oldNode = (N) oldNodePrv.getNext();
         oldNodePrv.next = new Node<>(e, oldNode);
         return index;
     }
@@ -228,10 +228,10 @@ public abstract class AbstractLinkedList<T> implements List<T> {
     @Override
     public T remove(int index) {
         indexCheck(index);
-        Node<T> removePrv = getNode(index - 1);
+        N removePrv = getNode(index - 1);
         assert removePrv != null;
         modCount++;
-        return unlink(removePrv, removePrv.next);
+        return unlink(removePrv, (N) removePrv.next);
     }
 
     /**
@@ -239,41 +239,5 @@ public abstract class AbstractLinkedList<T> implements List<T> {
      *
      * @return
      */
-    protected abstract boolean nodeFinished(Node<T> node);
-
-    /**
-     * Node class for the linked list
-     *
-     * @param <T>
-     */
-    protected class Node<T> {
-        protected T data;
-        protected Node<T> next;
-
-        public Node(T data) {
-            this.data = data;
-            this.next = null;
-        }
-
-        public Node(T data, Node<T> next) {
-            this.data = data;
-            this.next = next;
-        }
-
-        public T getData() {
-            return data;
-        }
-
-        public void setData(T data) {
-            this.data = data;
-        }
-
-        public Node<T> getNext() {
-            return next;
-        }
-
-        public void setNext(Node<T> next) {
-            this.next = next;
-        }
-    }
+    protected abstract boolean nodeFinished(N node);
 }

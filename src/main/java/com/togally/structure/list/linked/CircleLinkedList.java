@@ -1,7 +1,8 @@
 package com.togally.structure.list.linked;
 
 
-import java.io.Serializable;
+import com.togally.structure.list.ICircleLinkedList;
+import com.togally.structure.list.linked.node.Node;
 
 /**
  * 循环链表
@@ -10,7 +11,7 @@ import java.io.Serializable;
  *
  * @param <T>
  */
-public class CircleLinkedList<T> extends AbstractLinkedList<T> implements ICircleLinkedList<T> {
+public class CircleLinkedList<T, N extends Node<T>> extends AbstractLinkedList<T, N> implements ICircleLinkedList<T> {
     /**
      * 循环链表当遍历到首位时节点结束
      *
@@ -18,7 +19,7 @@ public class CircleLinkedList<T> extends AbstractLinkedList<T> implements ICircl
      * @return 结束
      */
     @Override
-    protected boolean nodeFinished(Node<T> node) {
+    protected boolean nodeFinished(N node) {
         return this.first == node;
     }
 
@@ -33,11 +34,23 @@ public class CircleLinkedList<T> extends AbstractLinkedList<T> implements ICircl
         if (null == this.last) return super.insertFirst(data);
         // 1.记录末尾节点 2.last指向新创建的node 3.老node指向信node
         Node<T> oldNode = this.last;
-        super.last = new Node<T>(data, super.first);
+        super.last = newInstance(data, super.first);
         oldNode.next = super.last;
 
         this.size++;
         return 0;
+    }
+
+    /**
+     * 获取实例
+     *
+     * @param data
+     * @param next
+     * @return n
+     */
+    @SuppressWarnings("unchecked")
+    protected N newInstance(T data, N next) {
+        return (N) new Node<T>(data, next);
     }
 
     /**
@@ -47,7 +60,7 @@ public class CircleLinkedList<T> extends AbstractLinkedList<T> implements ICircl
      * @return
      */
     @Override
-    public CircleLinkedList<T> union(CircleLinkedList<T> other) {
+    public CircleLinkedList<T, N> union(CircleLinkedList other) {
         this.modCount++;
         this.last.next = other.first;
         other.last.next = this.first;

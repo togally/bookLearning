@@ -1,12 +1,14 @@
 package com.togally.structure.list.linked;
 
+import com.togally.structure.list.linked.node.Node;
+
 /**
  * 单向链表
  *
  * @param <T>
  */
-public class OneWaytLinkedList<T> extends AbstractLinkedList<T> {
-    public OneWaytLinkedList() {
+public class SinglyLinkedList<T,N extends Node<T>> extends AbstractLinkedList<T,N> {
+    public SinglyLinkedList() {
         super.initList();
     }
 
@@ -17,7 +19,7 @@ public class OneWaytLinkedList<T> extends AbstractLinkedList<T> {
      * @return boolean
      */
     @Override
-    protected boolean nodeFinished(Node<T> node) {
+    protected boolean nodeFinished(N node) {
         return null == node;
     }
 }

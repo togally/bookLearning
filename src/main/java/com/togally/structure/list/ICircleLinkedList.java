@@ -1,4 +1,6 @@
-package com.togally.structure.list.linked;
+package com.togally.structure.list;
+
+import com.togally.structure.list.linked.CircleLinkedList;
 
 public interface ICircleLinkedList<T> {
 
@@ -8,5 +10,5 @@ public interface ICircleLinkedList<T> {
      * @param other 另外一个链表
      * @return 合并后的链表
      */
-    CircleLinkedList<T> union(CircleLinkedList<T> other);
+    CircleLinkedList<T,?> union(CircleLinkedList<T,?> other);
 }
