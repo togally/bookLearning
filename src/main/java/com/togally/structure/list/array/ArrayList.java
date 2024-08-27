@@ -102,7 +102,8 @@ public class ArrayList<E> implements List<E> {
     public int insert(int index, E e) {
         rangeCheckForAdd(index);
         ensureCapacityInternal(index);
-        System.arraycopy(elementData, index, elementData, index + 1, length - index);
+        size++;
+        System.arraycopy(elementData, index, elementData, index + 1, size - index);
         elementData[index] = e;
         return index;
     }

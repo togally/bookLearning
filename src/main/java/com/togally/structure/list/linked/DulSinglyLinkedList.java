@@ -14,6 +14,12 @@ public class DulSinglyLinkedList<T> extends SinglyLinkedList<T, DulNode<T>> {
         if (null == node){
             return null;
         }
+
+        // last前移
+        if (node == this.last){
+            this.last = prv;
+        }
+
         // 后置节点
         DulNode<T> next = node.next;
 

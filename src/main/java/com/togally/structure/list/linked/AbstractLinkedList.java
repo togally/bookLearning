@@ -104,6 +104,12 @@ public abstract class AbstractLinkedList<T,N extends Node<T>> implements List<T>
             prv.next = null;
             return null;
         }
+
+        // last前移
+        if (node == this.last){
+            this.last = prv;
+        }
+
         final N next = (N) node.getNext();
         if (null == prv) {
             this.first = next;
@@ -203,8 +209,9 @@ public abstract class AbstractLinkedList<T,N extends Node<T>> implements List<T>
 
         if (index == 0) return insertFirst(e);
 
-        if (index == size - 1) return insertLast(e);
+        if (index == size) return insertLast(e);
 
+        size++;
         N oldNodePrv = getNode(index - 1);
         assert oldNodePrv != null;
         N oldNode = (N) oldNodePrv.getNext();
@@ -235,6 +242,7 @@ public abstract class AbstractLinkedList<T,N extends Node<T>> implements List<T>
         N removePrv = getNode(index - 1);
         assert removePrv != null;
         modCount++;
+        size--;
         return unlink(removePrv, (N) removePrv.next);
     }
 

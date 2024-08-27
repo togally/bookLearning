@@ -73,11 +73,12 @@ public class DulCircleLinkedList<T> extends CircleLinkedList<T, DulNode<T>> {
             throw new OutOfRangeException("index" + index + "is out of range when insert into DulCircleLinkedList");
         }
 
-        if (index == 0) insertFirst(e);
+        if (index == 0) return insertFirst(e);
 
-        if (index == size - 1) insertLast(e);
+        if (index == size - 1) return insertLast(e);
 
         // 执行插入操作
+        size++;
         DulNode<T> prv = getNode(index);
         DulNode<T> next = prv.next;
         DulNode<T> node = new DulNode<>(e, prv, next);
