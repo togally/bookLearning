@@ -13,7 +13,7 @@
 
 ## 抽象数据类型
 ### 数据
-[AbstractStack](AbstractStack.java)
+[AbstractStack](ArrayStack.java)
 
 ### 行为
 [IStack](IStack.java)

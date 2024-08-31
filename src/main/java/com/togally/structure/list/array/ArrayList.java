@@ -63,6 +63,12 @@ public class ArrayList<E> implements List<E> {
         this.length = initCapacity;
     }
 
+    public ArrayList(Object[] elementData) {
+        this.elementData = elementData;
+        this.size = elementData.length;
+        this.length = elementData.length;
+    }
+
     @Override
     public List<E> initList() {
         return null;

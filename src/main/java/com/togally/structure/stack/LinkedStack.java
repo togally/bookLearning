@@ -1,5 +1,6 @@
 package com.togally.structure.stack;
 
+import com.togally.structure.list.List;
 import com.togally.structure.list.linked.SinglyLinkedList;
 
 /**
@@ -7,9 +8,56 @@ import com.togally.structure.list.linked.SinglyLinkedList;
  *
  * @param <T>
  */
-public class LinkedStack<T> extends AbstractStack<T> {
+public class LinkedStack<T> implements IStack<T> {
+    private List<T> list;
+
     @Override
     public void init() {
-        super.list = new SinglyLinkedList<>();
+        list = new SinglyLinkedList<>();
+    }
+
+
+    @Override
+    public void destroyStack() {
+        list = null;
+    }
+
+    @Override
+    public void clearStack() {
+        list.clear();
+    }
+
+    @Override
+    public boolean stackEmpty() {
+        return list.listEmpty();
+    }
+
+    @Override
+    public T getTop() {
+        return list.get(lastIndex());
+    }
+
+    @Override
+    public T pop() {
+        return list.remove(lastIndex());
+    }
+
+    @Override
+    public void push(T e) {
+        list.insert(lastIndex() + 1, e);
+    }
+
+    @Override
+    public int stackLength() {
+        return list.length();
+    }
+
+    @Override
+    public List<T> getList() {
+        return list;
+    }
+
+    private int lastIndex() {
+        return list.length() - 1;
     }
 }
