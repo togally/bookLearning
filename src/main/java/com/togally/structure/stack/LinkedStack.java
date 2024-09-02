@@ -18,13 +18,15 @@ public class LinkedStack<T> implements IStack<T> {
 
 
     @Override
-    public void destroyStack() {
+    public boolean destroyStack() {
         list = null;
+        return true;
     }
 
     @Override
-    public void clearStack() {
+    public boolean clearStack() {
         list.clear();
+        return true;
     }
 
     @Override
