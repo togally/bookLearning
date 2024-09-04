@@ -26,6 +26,10 @@ public class ArrayStack<T> implements IStack<T> {
      */
     protected int direction;
 
+    public ArrayStack() {
+        this.init();
+    }
+
     @Override
     public void init() {
         top = 0;
@@ -62,6 +66,9 @@ public class ArrayStack<T> implements IStack<T> {
     @Override
     @SuppressWarnings("unchecked")
     public T getTop() {
+        if (this.stackLength() == 0){
+            return null;
+        }
         return (T) list[direction == 0 ? top - 1 : top + 1];
     }
 
