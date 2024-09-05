@@ -81,7 +81,7 @@ location /XXX/ <font color=grey>匹配以 /XX/ 开头的请求,则没问题，�
 
 ### 针对于proxy_pass匹配带不带/的区别
 
-proxy_pass http://target/XXX <font color=grey> 请求http://host/XXX/abc 则会转发到http://target/abc</font> 
+proxy_pass http://target/XXX/ <font color=grey> 请求http://host/XXX/abc 则会转发到http://target/abc</font> 
 
-proxy_pass http://target/XXX/ <font color=grey> 请求http://host/XXX/abc 则会转发到http://target/XXX/abc </font>
+proxy_pass http://target/XXX <font color=grey> 请求http://host/XXX/abc 则会转发到http://target/XXX/abc </font>
 
