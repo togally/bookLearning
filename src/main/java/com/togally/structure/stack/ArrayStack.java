@@ -1,6 +1,6 @@
 package com.togally.structure.stack;
 
-import com.togally.exception.OutOfRangeException;
+import com.togally.support.exception.OutOfRangeException;
 import com.togally.structure.list.List;
 import com.togally.structure.list.array.ArrayList;
 

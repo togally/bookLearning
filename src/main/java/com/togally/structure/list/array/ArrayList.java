@@ -1,6 +1,6 @@
 package com.togally.structure.list.array;
 
-import com.togally.exception.OutOfRangeException;
+import com.togally.support.exception.OutOfRangeException;
 import com.togally.structure.list.List;
 
 import java.util.Arrays;

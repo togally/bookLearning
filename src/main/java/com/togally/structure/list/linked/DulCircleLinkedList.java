@@ -1,8 +1,7 @@
 package com.togally.structure.list.linked;
 
-import com.togally.exception.OutOfRangeException;
+import com.togally.support.exception.OutOfRangeException;
 import com.togally.structure.list.linked.node.DulNode;
-import com.togally.structure.list.linked.node.Node;
 
 
 /**

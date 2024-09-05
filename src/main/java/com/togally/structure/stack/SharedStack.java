@@ -1,6 +1,6 @@
 package com.togally.structure.stack;
 
-import com.togally.exception.OutOfRangeException;
+import com.togally.support.exception.OutOfRangeException;
 
 import java.util.function.Consumer;
 import java.util.function.Function;

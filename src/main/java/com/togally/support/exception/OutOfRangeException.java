@@ -1,4 +1,4 @@
-package com.togally.exception;
+package com.togally.support.exception;
 
 /**
  * 超范围异常
