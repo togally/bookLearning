@@ -2,6 +2,7 @@ package togally.structure.queue;
 
 import cn.hutool.core.util.NumberUtil;
 import com.togally.structure.queue.CircleQueue;
+import com.togally.structure.queue.LinkedQueue;
 import com.togally.structure.queue.Queue;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,7 +10,9 @@ import org.junit.Test;
 public class QueueTest {
     @Test
     public void test(){
-        testQueue(new CircleQueue<>(3));
+//        testQueue(new CircleQueue<>(5));
+        testQueue(new LinkedQueue<>());
+
     }
 
     public void testQueue(Queue<Integer> queue){
